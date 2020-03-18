@@ -3,22 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "customize-cra": "^0.9.1",
     "firebase": "latest",
     "firebase-admin": "latest",
     "firebase-tools": "latest",
     "moment": "latest",
+    "node-sass": "latest",
     "react": "latest",
+    "react-app-rewired": "^2.1.5",
     "react-dom": "latest",
     "react-redux": "latest",
     "react-router-dom": "latest",
     "react-scripts": "latest",
-    "redux": "latest",
-    "node-sass": "latest"
+    "redux": "latest"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -30,5 +32,12 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "@babel/plugin-proposal-pipeline-operator": "^7.8.3",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  }
 }
