@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class SignIn extends Component {
-	state = { email: "", password: "" };
+	state = { email: '', password: '' };
 
 	handleChange = event => {
 		const { name, value } = event.target;
@@ -12,7 +12,7 @@ class SignIn extends Component {
 	handleSubmit = event => {
 		event.preventDefault();
 
-		this.setState( { email: "", password: "" } );
+		this.setState( { email: '', password: '' } );
 	};
 
 	render() {

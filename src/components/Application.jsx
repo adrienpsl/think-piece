@@ -1,48 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
+import { firestore, getPostsCollection } from '../firebase';
+import { collectIdsAndDocs } from '../utilities';
 
-import Posts from "./Posts";
+import Posts from './Posts';
 
-const initState = {
-	posts: [
-		{
-			id      : "1",
-			title   : "A Very Hot Take",
-			content :
-					"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis suscipit repellendus modi unde cumque, fugit in ad necessitatibus eos sed quasi et! Commodi repudiandae tempora ipsum fugiat. Quam, officia excepturi!",
-			user    : {
-				uid        : "123",
-				displayName: "Bill Murray",
-				email      : "billmurray@mailinator.com",
-				photoURL   : "https://www.fillmurray.com/300/300",
-			},
-			stars   : 1,
-			comments: 47,
-		},
-		{
-			id      : "2",
-			title   : "The Sauciest of Opinions",
-			content :
-					"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis suscipit repellendus modi unde cumque, fugit in ad necessitatibus eos sed quasi et! Commodi repudiandae tempora ipsum fugiat. Quam, officia excepturi!",
-			user    : {
-				uid        : "456",
-				displayName: "Mill Burray",
-				email      : "notbillmurray@mailinator.com",
-				photoURL   : "https://www.fillmurray.com/400/400",
-			},
-			stars   : 3,
-			comments: 0,
-		},
-	],
-};
+async function fetchAllPosts( setPost ) {
+	const snapshot = await firestore.collection( 'posts' )
+																	.get();
+	const posts = snapshot.docs.map( collectIdsAndDocs );
+	setPost( { posts } );
+}
+
+async function createNewPosts( { post, addPostToState, state } ) {
+	const { posts } = state;
+
+	// put in the database, and get back document ref
+	const docReference = await
+			getPostsCollection()
+			.add( post );
+
+	// return the document
+	const doc = await docReference.get();
+	const newPost = collectIdsAndDocs( doc );
+
+	addPostToState( { posts: [ newPost, ...posts ] } );
+}
 
 export default function Application() {
 
-	const [ state, setState ] = useState( initState );
+	const [ state, setState ] = useState( { posts: [] } );
 
-	const handleCreate = post => {
-		const { posts } = state;
-		setState( { posts: [ post, ...posts ] } );
-	};
+	const handleCreate = ( post ) => createNewPosts( { post, setState, state } );
+
+	useEffect(
+			() => setState |> fetchAllPosts,
+			[]
+	);
 
 	return (
 			<main className="Application">

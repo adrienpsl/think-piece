@@ -1,6 +1,6 @@
-import React from "react";
-import AddComment from "./AddComment";
-import Comment from "./Comment";
+import React from 'react';
+import AddComment from './AddComment';
+import Comment from './Comment';
 
 const Comments = ( { comments, onCreate } ) => {
 	return (

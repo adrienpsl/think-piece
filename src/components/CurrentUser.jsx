@@ -1,5 +1,5 @@
-import moment from "moment";
-import React from "react";
+import moment from 'moment';
+import React from 'react';
 
 const CurrentUser = ( { displayName, photoURL, email, createdAt, children } ) => {
 	return (
@@ -22,9 +22,9 @@ const CurrentUser = ( { displayName, photoURL, email, createdAt, children } ) =>
 };
 
 CurrentUser.defaultProps = {
-	displayName: "Bill Murray",
-	email      : "billmurray@mailinator.com",
-	photoURL   : "https://www.fillmurray.com/300/300",
+	displayName: 'Bill Murray',
+	email      : 'billmurray@mailinator.com',
+	photoURL   : 'https://www.fillmurray.com/300/300',
 	createdAt  : new Date(),
 };
 

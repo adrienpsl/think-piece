@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class AddPost extends Component {
-	state = { title: "", content: "" };
+	state = { title: '', content: '' };
 
 	handleChange = event => {
 		const { name, value } = event.target;
@@ -20,10 +20,10 @@ class AddPost extends Component {
 			title,
 			content,
 			user     : {
-				uid        : "1111",
-				displayName: "Steve Kinney",
-				email      : "steve@mailinator.com",
-				photoURL   : "http://placekitten.com/g/200/200",
+				uid        : '1111',
+				displayName: 'Steve Kinney',
+				email      : 'steve@mailinator.com',
+				photoURL   : 'http://placekitten.com/g/200/200',
 			},
 			favorites: 0,
 			comments : 0,
@@ -32,7 +32,7 @@ class AddPost extends Component {
 
 		onCreate( post );
 
-		this.setState( { title: "", content: "" } );
+		this.setState( { title: '', content: '' } );
 	};
 
 	render() {

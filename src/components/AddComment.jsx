@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class AddComment extends Component {
-	state = { content: "" };
+	state = { content: '' };
 
 	handleChange = event => {
 		const { name, value } = event.target;
@@ -11,7 +11,7 @@ class AddComment extends Component {
 	handleSubmit = event => {
 		event.preventDefault();
 
-		this.setState( { content: "" } );
+		this.setState( { content: '' } );
 	};
 
 	render() {
