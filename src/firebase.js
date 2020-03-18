@@ -33,6 +33,50 @@ export const auth = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup( provider );
 
+//
+export const createUserProfileDocument = async ( user, formData ) => {
+	// no user, that will blow
+	if ( !user ) return;
+
+	// we check if a user exist
+	// I first get the location of my document,
+	// after and create in that location if its doesn't exits
+	// ref = if there is an object => it will be at this ref
+	const userRef = fstore.doc( 'users/' + user.uid );
+	// I try to fetch the document
+	const snapshot = await userRef.get();
+
+	if ( !snapshot.exists ) {
+		const { email, displayName, photoURL } = user;
+		const createAt = new Date();
+		try {
+			await userRef.set( {
+				email,
+				displayName,
+				photoURL,
+				createAt, ...formData
+			} );
+		}
+		catch ( e ) {
+			console.error( e );
+		}
+	}
+	return getUserDocument( user.uid );
+};
+
+export const getUserDocument = async ( uid ) => {
+	if ( !uid ) return undefined;
+
+	try {
+		const userDocument = await fstore.collection( 'users' )
+																		 .doc( uid )
+																		 .get();
+
+		return { uid, ...userDocument.data() };
+	}
+	catch ( e ) { console.error( 'getUserDocument', e ); }
+};
+
 
 // collections name
 export const POSTS = 'posts';

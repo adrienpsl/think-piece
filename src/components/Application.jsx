@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth, getPostsCollection } from '../firebase';
+import {
+	auth,
+	createUserProfileDocument,
+	getPostsCollection
+} from '../firebase';
 import { collectIdsAndDocs } from '../utilities';
 import Authentication from './Authentication';
 
@@ -16,7 +20,9 @@ export default function Application() {
 
 	function userSubscription() {
 		const unsubscribeFromAuth =
-							auth.onAuthStateChanged( userResult => {
+							auth.onAuthStateChanged( async userResult => {
+								const user = await createUserProfileDocument( userResult );
+								console.log( user );
 								setUser( userResult );
 							} );
 		return () => unsubscribeFromAuth();
