@@ -1,7 +1,12 @@
 import moment from 'moment';
 import React from 'react';
+import { fstore, POSTS } from '../firebase';
 
-const Post = ( { title, content, user, createdAt, stars, comments } ) => {
+const Post = ( { title, content, user, createdAt, stars, comments, id } ) => {
+	const reference = fstore.doc( `${ POSTS }/${ id }` );
+	const onRemove = () => reference.delete();
+	const onStart = () => reference.update( { stars: stars + 1 } );
+
 	return (
 			<article className="Post">
 				<div className="Post--content">
@@ -23,12 +28,17 @@ const Post = ( { title, content, user, createdAt, stars, comments } ) => {
 							{ comments }
 						</p>
 						<p>Posted by { user.displayName }</p>
-						<p>{ moment( createdAt )
-						.calendar() }</p>
+						<p>
+							{
+								moment( createdAt.toDate() )
+								.calendar()
+							}
+						</p>
 					</div>
 					<div>
-						<button className="star">Star</button>
-						<button className="delete">Delete</button>
+						<button className="star" onClick={ onStart }>Star</button>
+						<button className="delete" onClick={ onRemove }>Delete
+						</button>
 					</div>
 				</div>
 			</article>

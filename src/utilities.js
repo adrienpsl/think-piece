@@ -2,5 +2,7 @@
 
 //
 
-export const collectIdsAndDocs = doc => ( { id: doc.id, ...doc.data() } );
+export function collectIdsAndDocs( doc ) {
+	return { ...doc.data(), id: doc.id };
+}
 

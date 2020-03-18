@@ -2,11 +2,16 @@ import React from 'react';
 import AddPost from './AddPost';
 import Post from './Post';
 
-const Posts = ( { posts, onCreate } ) => {
+const Posts = ( { posts} ) => {
 	return (
 			<section className="Posts">
-				<AddPost onCreate={ onCreate }/>
-				{ posts.map( post => <Post { ...post } key={ post.id }/> ) }
+				<AddPost />
+				{
+					posts.map( post => <Post { ...post }
+																	 key={ post.id }
+							/>
+					)
+				}
 			</section>
 	);
 };
