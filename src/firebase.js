@@ -64,15 +64,13 @@ export const createUserProfileDocument = async ( user, formData ) => {
 	return getUserDocument( user.uid );
 };
 
-export const getUserDocument = async ( uid ) => {
+export const getUserDocument = uid => {
 	if ( !uid ) return undefined;
 
 	try {
-		const userDocument = await fstore.collection( 'users' )
-																		 .doc( uid )
-																		 .get();
+		return fstore.collection( 'users' )
+								 .doc( uid );
 
-		return { uid, ...userDocument.data() };
 	}
 	catch ( e ) { console.error( 'getUserDocument', e ); }
 };

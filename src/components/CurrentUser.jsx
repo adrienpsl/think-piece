@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { auth } from '../firebase';
 
 const CurrentUser = ( { displayName, photoURL, email, createdAt, children } ) => {
@@ -9,7 +10,7 @@ const CurrentUser = ( { displayName, photoURL, email, createdAt, children } ) =>
 				<div className="CurrentUser--profile">
 					{ photoURL && <img src={ photoURL } alt={ displayName }/> }
 					<div className="CurrentUser--information">
-						<h2>{ displayName }</h2>
+						<Link to="/profile"><h2>{ displayName }</h2></Link>
 						<p className="email">{ email }</p>
 						<p className="created-at">{ moment( createdAt )
 						.calendar() }</p>
@@ -22,12 +23,5 @@ const CurrentUser = ( { displayName, photoURL, email, createdAt, children } ) =>
 			</section>
 	);
 };
-
-// CurrentUser.defaultProps = {
-// 	displayName: 'Bill Murray',
-// 	email      : 'billmurray@mailinator.com',
-// 	photoURL   : 'https://www.fillmurray.com/300/300',
-// 	createdAt  : new Date(),
-// };
 
 export default CurrentUser;

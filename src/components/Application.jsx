@@ -1,52 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import {
-	auth,
-	createUserProfileDocument,
-	getPostsCollection
-} from '../firebase';
-import { collectIdsAndDocs } from '../utilities';
+import React from 'react';
+
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import PostsProvider from '../providers/Posts.provider';
+import UserProvider from '../providers/Users.provider';
 import Authentication from './Authentication';
 
 import Posts from './Posts';
-
+import UserProfile from './UserProfile.component';
 
 export default function Application() {
 
-	useEffect( postsSubscription, [] );
-	useEffect( userSubscription, [] );
-
-	const [ posts, setPosts ] = useState( [] );
-	const [ user, setUser ] = useState( undefined );
-
-	function userSubscription() {
-		const unsubscribeFromAuth =
-							auth.onAuthStateChanged( async userResult => {
-								const user = await createUserProfileDocument( userResult );
-								console.log( user );
-								setUser( userResult );
-							} );
-		return () => unsubscribeFromAuth();
-	}
-
-	function postsSubscription() {
-		const onSnapshot = ( { docs } ) => {
-			setPosts( docs.map( collectIdsAndDocs ) );
-		};
-
-		const unsubscribe =
-							getPostsCollection()
-							.onSnapshot( onSnapshot );
-
-		return () => unsubscribe();
-	}
-
-
 	return (
-			<main className="Application">
-				<h1>Think Piece</h1>
-				<Authentication user={ user }/>
-				<Posts posts={ posts }/>
-			</main>
+			<BrowserRouter>
+				<PostsProvider>
+					<UserProvider>
+						<main className="Application">
+							<Link to="/"><h1>Think Piece</h1></Link>
+							<Authentication/>
+
+							<Switch>
+
+								<Route exact path="/">
+									<Posts/>
+								</Route>
+
+								<Route exact path="/profile">
+									<UserProfile/>
+								</Route>
+
+							</Switch>
+
+						</main>
+					</UserProvider>
+				</PostsProvider>
+			</BrowserRouter>
 	);
 }
 

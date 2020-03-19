@@ -1,11 +1,20 @@
 import moment from 'moment';
-import React from 'react';
+import React, { useContext } from 'react';
 import { fstore, POSTS } from '../firebase';
+import { UserContext } from '../providers/Users.provider';
 
-const Post = ( { title, content, user, createdAt, stars, comments, id } ) => {
+
+const belongsToCurrentUser = ( currentUser, postAuthor ) => {
+	if ( !currentUser ) return false;
+	return currentUser.uid === postAuthor.uid;
+};
+
+const Post = ( { title, content, user, createdAt, stars, comments, id, ...rest } ) => {
 	const reference = fstore.doc( `${ POSTS }/${ id }` );
 	const onRemove = () => reference.delete();
 	const onStart = () => reference.update( { stars: stars + 1 } );
+
+	const { user: currentUser } = useContext( UserContext );
 
 	return (
 			<article className="Post">
@@ -37,8 +46,12 @@ const Post = ( { title, content, user, createdAt, stars, comments, id } ) => {
 					</div>
 					<div>
 						<button className="star" onClick={ onStart }>Star</button>
-						<button className="delete" onClick={ onRemove }>Delete
-						</button>
+						{
+							belongsToCurrentUser( currentUser, user ) ?
+									<button className="delete"
+													onClick={ onRemove }>Delete</button>
+									: null
+						}
 					</div>
 				</div>
 			</article>
