@@ -1,0 +1,110 @@
+[debug] [2020-03-19T20:08:08.233Z] ----------------------------------------------------------------------
+[debug] [2020-03-19T20:08:08.234Z] Command:       /usr/bin/node /home/adrien/Code/learn/Js/react-firebase/node_modules/.bin/firebase init
+[debug] [2020-03-19T20:08:08.234Z] CLI Version:   7.15.1
+[debug] [2020-03-19T20:08:08.234Z] Platform:      linux
+[debug] [2020-03-19T20:08:08.234Z] Node Version:  v12.14.1
+[debug] [2020-03-19T20:08:08.234Z] Time:          Thu Mar 19 2020 21:08:08 GMT+0100 (Central European Standard Time)
+[debug] [2020-03-19T20:08:08.234Z] ----------------------------------------------------------------------
+[debug] [2020-03-19T20:08:08.234Z] 
+[debug] [2020-03-19T20:08:08.237Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-19T20:08:08.237Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  /home/adrien/Code/learn/Js/react-firebase
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2020-03-19T20:09:16.701Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-03-19T20:09:16.702Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-03-19T20:09:16.847Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-19T20:09:16.860Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects?pageSize=100  
+ 
+[debug] [2020-03-19T20:09:17.207Z] <<< HTTP RESPONSE 200
+[info] i  Using project think-piece-live-282ba (Think Piece Live)
+[info] 
+=== Firestore Setup
+[debug] [2020-03-19T20:09:35.353Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-19T20:09:35.353Z] > authorizing via signed-in user
+[debug] [2020-03-19T20:09:35.353Z] [iam] checking project think-piece-live-282ba for permissions ["firebase.projects.get"]
+[debug] [2020-03-19T20:09:35.354Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/think-piece-live-282ba:testIamPermissions  
+
+[debug] [2020-03-19T20:09:36.131Z] <<< HTTP RESPONSE 200
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2020-03-19T20:09:41.660Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/think-piece-live-282ba/releases?pageSize=10&pageToken=  
+ 
+[debug] [2020-03-19T20:09:42.557Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-19T20:09:42.557Z] Found ruleset: projects/think-piece-live-282ba/rulesets/64440071-83a8-403c-bd65-ff657c27096b
+[debug] [2020-03-19T20:09:42.558Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/think-piece-live-282ba/rulesets/64440071-83a8-403c-bd65-ff657c27096b  
+ 
+[debug] [2020-03-19T20:09:43.374Z] <<< HTTP RESPONSE 200
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2020-03-19T20:10:05.517Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/think-piece-live-282ba/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2020-03-19T20:10:05.517Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1beta2/projects/think-piece-live-282ba/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2020-03-19T20:10:05.696Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-19T20:10:05.706Z] <<< HTTP RESPONSE 200
+[info] 
+=== Functions Setup
+[info] 
+[info] A functions directory will be created in your project with a Node.js
+[info] package pre-configured. Functions can be deployed with firebase deploy.
+[info] 
+[debug] [2020-03-19T20:10:05.708Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-19T20:10:05.708Z] > authorizing via signed-in user
+[debug] [2020-03-19T20:10:05.708Z] [iam] checking project think-piece-live-282ba for permissions ["firebase.projects.get"]
+[debug] [2020-03-19T20:10:05.708Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/think-piece-live-282ba:testIamPermissions  
+
+[debug] [2020-03-19T20:10:06.480Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-19T20:10:06.481Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/think-piece-live-282ba/services/cloudfunctions.googleapis.com:enable  
+ 
+[debug] [2020-03-19T20:10:06.482Z] >>> HTTP REQUEST POST https://serviceusage.googleapis.com/v1/projects/think-piece-live-282ba/services/runtimeconfig.googleapis.com:enable  
+ 
+[debug] [2020-03-19T20:10:07.512Z] <<< HTTP RESPONSE 200
+[debug] [2020-03-19T20:10:07.605Z] <<< HTTP RESPONSE 200
+[info] ✔  Wrote functions/package.json
+[info] ✔  Wrote functions/index.js
+[info] ✔  Wrote functions/.gitignore
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2020-03-19T20:11:39.272Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ 
+[debug] [2020-03-19T20:11:40.424Z] <<< HTTP RESPONSE 200
+[info] i  Skipping write of build/index.html
+[info] 
+=== Storage Setup
+[info] 
+[info] Firebase Storage Security Rules allow you to define how and when to allow
+[info] uploads and downloads. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[info] 
+=== Emulators Setup
+[info] i  firestore: downloading cloud-firestore-emulator-v1.11.1.jar...

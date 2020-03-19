@@ -1,15 +1,15 @@
 import React, { useContext, useRef, useState } from 'react';
-import { auth, fstore } from '../firebase';
+import { auth, fstore, storage } from '../firebase';
 import { UserContext } from '../providers/Users.provider';
 
 const getUid = () => auth.currentUser.uid;
 const getUserRef = () => fstore.doc( 'users/' + getUid() );
+const getFile = imageInput => imageInput && imageInput.files[ 0 ];
 
 export default function UserProfile() {
 	const { user } = useContext( UserContext );
 
 	const [ displayName, setDisplayName ] = useState( user ? user.displayName : '' );
-	const [ imageInput, setImageInput ] = useState( null );
 
 	const refInput = useRef( undefined );
 
@@ -18,9 +18,24 @@ export default function UserProfile() {
 		console.log( displayName, user );
 
 		if ( displayName ) {
-			const userRef = getUserRef( user );
-			await userRef.update( { displayName } );
+			await getUserRef( user )
+			.update( { displayName } );
 		}
+
+		const file = getFile( refInput.current );
+		if ( file ) {
+			storage.ref()
+						 .child( 'user-profiles' )
+						 .child( getUid() )
+						 .child( file.name )
+						 .put( file )
+						 .then( ( { ref } ) => ref.getDownloadURL() )
+						 .then( photoURL =>
+								 getUserRef()
+								 .update( { photoURL } )
+						 );
+		}
+
 	};
 
 	return (

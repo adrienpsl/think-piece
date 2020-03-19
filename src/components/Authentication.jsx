@@ -6,7 +6,6 @@ import SignInAndSignUp from './SignInAndSignUp';
 
 const Authentication = ( { loading } ) => {
 	const { user } = useContext( UserContext );
-
 	if ( loading ) return null;
 
 	return <div>{ user ? <CurrentUser { ...user }/> : <SignInAndSignUp/> }</div>;

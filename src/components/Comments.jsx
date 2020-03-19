@@ -2,7 +2,7 @@ import React from 'react';
 import AddComment from './AddComment';
 import Comment from './Comment';
 
-const Comments = ( { comments, onCreate } ) => {
+const Comments = ( { comments, onCreate, postId } ) => {
 	return (
 			<section className="Comments">
 				<AddComment onCreate={ onCreate }/>

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { fstore, POSTS } from '../firebase';
 import { UserContext } from '../providers/Users.provider';
 
@@ -9,7 +10,7 @@ const belongsToCurrentUser = ( currentUser, postAuthor ) => {
 	return currentUser.uid === postAuthor.uid;
 };
 
-const Post = ( { title, content, user, createdAt, stars, comments, id, ...rest } ) => {
+const Post = ( { title, content, user, createdAt, stars, comments, id } ) => {
 	const reference = fstore.doc( `${ POSTS }/${ id }` );
 	const onRemove = () => reference.delete();
 	const onStart = () => reference.update( { stars: stars + 1 } );
@@ -19,7 +20,7 @@ const Post = ( { title, content, user, createdAt, stars, comments, id, ...rest }
 	return (
 			<article className="Post">
 				<div className="Post--content">
-					<h3>{ title }</h3>
+					<Link to={ `/post/${ id }` }><h3>{ title }</h3></Link>
 					<div>{ content }</div>
 				</div>
 				<div className="Post--meta">

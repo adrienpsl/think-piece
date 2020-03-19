@@ -2,9 +2,8 @@
 // That's avoid all other bundle, like message...
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
-// that's the firestore lib.
-// I'll export it in bottom
 import 'firebase/firestore';
+import 'firebase/storage';
 
 
 const firebaseConfig = {
@@ -29,6 +28,7 @@ window.firebase = firebase;
 // We now have a database.
 export const fstore = firebase.firestore();
 export const auth = firebase.auth();
+export const storage = firebase.storage();
 
 export const provider = new firebase.auth.GoogleAuthProvider();
 export const signInWithGoogle = () => auth.signInWithPopup( provider );
